@@ -6,12 +6,14 @@
 
 
   <h1>Make buggy</h1>
-  <p>
-    <a href="/" class="button">home</a>
-   </p>
+  
    <p>
     {{ msg }}
   </p>
+  <p>
+    Buggy aesthetics
+   </p>
+  
   <form action="/new" method="post">
     <label for="qty_wheels">Number of wheels:</label>
     <input type="text" name="qty_wheels" /> <br>
@@ -19,5 +21,8 @@
     <input type="text" name="flag_color" /> <br>
     <input type="submit" class="button"> 
   </form>
+  <p>
+    <a href="/" class="button">home</a>
+   </p>
   
 {% endblock %}
