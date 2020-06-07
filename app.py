@@ -52,7 +52,7 @@ def create_buggy():
       return render_template("buggy-form.html", msg=msg)
     flag_color = request.form['flag_color']
     match = re.search(r'^#(?:[0-9a-fA-F]{3}){1,2}$', flag_color)
-    if flag_color not in all_colours:
+    if flag_color not in all_colours and not match:
       msg = "bruh, you have not entered a correct CSS colour, please use a colour keyword such as 'red' or a correct RGB hex value like '#ff0000"
       return render_template("buggy-form.html", msg=msg)
     try:
