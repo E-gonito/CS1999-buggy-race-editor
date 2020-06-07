@@ -17,9 +17,7 @@ def home():
    return render_template('index.html', server_url=BUGGY_RACE_SERVER_URL)
 
 #------------------------------------------------------------
-# creating a new buggy:
-#  if it's a POST request process the submitted data
-#  but if it's a GET request, just show the form
+# creating a new buggy
 #------------------------------------------------------------
 @app.route('/new', methods = ['POST', 'GET'])
 def create_buggy():
@@ -27,10 +25,12 @@ def create_buggy():
     return render_template("buggy-form.html")
   elif request.method == 'POST':
     msg=""
+    qty_wheels = request.form['qty_wheels']
+    if not qty_wheels.isdigit() or int(qty_wheels)<4 or int(qty_wheels)%2 != 0 :
+      msg = "You have not entered a valid number of wheels, your input must be numbers only, even and greater than 4!"
+      return render_template("buggy-form.html", msg=msg)
+    flag_color = request.form['flag_color']
     try:
-      qty_wheels = request.form['qty_wheels']
-      flag_color = request.form['flag_color']
-      msg = f"qty_wheels={qty_wheels}" 
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
         cur.execute(
