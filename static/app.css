@@ -45,6 +45,7 @@ a.button:hover {
 input {
   padding: 0.5em;
   font-size:100%;
+  display: inline-block;
 }
 input.button {
   background-color: #99ff99;
@@ -61,4 +62,9 @@ table td, table th {
 }
 .spacer {
   margin: 3em 0;
+}
+label{
+    display: inline-block;
+    width: 250px;
+    text-align: left;
 }

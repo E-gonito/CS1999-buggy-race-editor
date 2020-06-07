@@ -4,13 +4,17 @@
 
 {% block content %}
 
+
   <h1>Make buggy</h1>
-  <form action="/new" method="post">
-    <label for="qty_wheels">Number of wheels:</label>
-    <input type="text" name="qty_wheels" />
-    <input type="submit" class="button">
-  </form>
   <p>
     <a href="/" class="button">home</a>
    </p>
+  <form action="/new" method="post">
+    <label for="qty_wheels">Number of wheels:</label>
+    <input type="text" name="qty_wheels" /> <br>
+    <label for="flag_color">Flag's colour:</label>
+    <input type="text" name="flag_color" /> <br>
+    <input type="submit" class="button"> 
+  </form>
+  
 {% endblock %}
