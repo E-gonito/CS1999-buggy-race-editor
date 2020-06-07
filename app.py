@@ -72,6 +72,8 @@ def create_buggy():
     if not power_units.isdigit() or int(power_units) < 1:
         msg = "You have entered a invalid unit for the Primary motive power units, it must be 1 or greater"
         return render_template("buggy-form.html", msg=msg)
+    #aux_power_type
+    aux_power_type = request.form['aux_power_type']
     try:
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
