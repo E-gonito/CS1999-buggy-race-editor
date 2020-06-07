@@ -63,18 +63,21 @@ def create_buggy():
     if flag_color_secondary not in all_colours and not match2:
       msg = "You have not entered a correct CSS colour for the secondary flag colour, please use a colour keyword such as 'red' or a correct RGB hex value like '#ff0000"
       return render_template("buggy-form.html", msg=msg)
-
-
-
-
-
-
+    #Flag's pattern
+    flag_pattern = request.form['flag_pattern']
+    #power_type
+    power_type = request.form['power_type']
+    #power_units
+    power_units = request.form['power_units']
+    if not power_units.isdigit() or int(power_units) < 1:
+        msg = "You have entered a invalid unit for the Primary motive power units, it must be 1 or greater"
+        return render_template("buggy-form.html", msg=msg)
     try:
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
         cur.execute(
-           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=? WHERE id=?",
-           (qty_wheels, flag_color, flag_color_secondary, DEFAULT_BUGGY_ID)
+           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=? WHERE id=?",
+           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, DEFAULT_BUGGY_ID)
          )
         con.commit()
         msg = "Record successfully saved"
