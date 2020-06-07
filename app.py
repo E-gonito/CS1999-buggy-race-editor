@@ -47,20 +47,34 @@ def create_buggy():
                    'whitesmoke', 'yellowgreen', 'rebeccapurple')
     msg=""
     qty_wheels = request.form['qty_wheels']
+    #number of wheels
     if not qty_wheels.isdigit() or int(qty_wheels)<4 or int(qty_wheels)%2 != 0 :
       msg = "You have not entered a valid number of wheels, your input must be numbers only, even and greater than 4!"
       return render_template("buggy-form.html", msg=msg)
+    # flag colour
     flag_color = request.form['flag_color']
     match = re.search(r'^#(?:[0-9a-fA-F]{3}){1,2}$', flag_color)
     if flag_color not in all_colours and not match:
-      msg = "bruh, you have not entered a correct CSS colour, please use a colour keyword such as 'red' or a correct RGB hex value like '#ff0000"
+      msg = "You have not entered a correct CSS colour for the primary flag colour, please use a colour keyword such as 'red' or a correct RGB hex value like '#ff0000"
       return render_template("buggy-form.html", msg=msg)
+    #flag_color_secondary
+    flag_color_secondary = request.form['flag_color_secondary']
+    match2 = re.search(r'^#(?:[0-9a-fA-F]{3}){1,2}$', flag_color_secondary)
+    if flag_color_secondary not in all_colours and not match2:
+      msg = "You have not entered a correct CSS colour for the secondary flag colour, please use a colour keyword such as 'red' or a correct RGB hex value like '#ff0000"
+      return render_template("buggy-form.html", msg=msg)
+
+
+
+
+
+
     try:
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
         cur.execute(
-           "UPDATE buggies set qty_wheels=?, flag_color=? WHERE id=?",
-           (qty_wheels, flag_color, DEFAULT_BUGGY_ID)
+           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=? WHERE id=?",
+           (qty_wheels, flag_color, flag_color_secondary, DEFAULT_BUGGY_ID)
          )
         con.commit()
         msg = "Record successfully saved"
