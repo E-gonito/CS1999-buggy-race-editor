@@ -89,15 +89,14 @@ def create_buggy():
             msg = "You have entered a invalid number for the amount of hamster boosters, please insert a integer"
     else:
         hamster_booster = 0
-
-
-
+    #Type of tyres
+    tyres = request.form['tyres']
     try:
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
         cur.execute(
-           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=? WHERE id=?",
-           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, DEFAULT_BUGGY_ID)
+           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=? WHERE id=?",
+           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, DEFAULT_BUGGY_ID)
          )
         con.commit()
         msg = "Record successfully saved"

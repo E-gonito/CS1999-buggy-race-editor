@@ -11,21 +11,36 @@
     {{ msg }}
   </p>
   
-  <p>
+  <p> 
     Buggy aesthetics
-   </p>
+   </p> <br>
   
   <form action="/new" method="post">
+	<p>
     <label for="qty_wheels">Number of wheels:</label>
     <input type="text" name="qty_wheels" /> <br>
+	</p>
 	
+	<p>
+	<label for="tyres">Type of tyre:</label>
+	<select name="tyres" id="tyres">
+    <option value="knobbly">Knobbly</option>
+    <option value="slick">Slick</option>
+    <option value="steelband">Steel banded</option>
+    <option value="reactive">Reactive</option>
+	<option value="maglev">Maglev</option>
+	</select>
+	</p>
+
     <label for="flag_color">Flag's colour:</label>
     <input type="text" name="flag_color" /> <br>
 	
+	<p>
 	<label for="flag_color_secondary">Flag's secondary colour:</label>
     <input type="text" name="flag_color_secondary" /> <br>
+	</p>
 	<p>
-	 <label for="flag_pattern">Flag Pattern:</label>
+	<label for="flag_pattern">Flag Pattern:</label>
 	<select name="flag_pattern" id="flag_pattern">
     <option value="plain">Plain</option>
     <option value="vstripe">Vertical stripes</option>
@@ -34,65 +49,59 @@
 	<option value="checker">Checkers</option>
 	<option value="spot">Spots</option>
 	</select>
-	</p>
-	<p>
-    Buggy primary engine:
-   </p>
-   <input type="radio" id="petrol" name="power_type" value="petrol"
-	<label for="power_type">Petroleum-fuelled internal combustion engine </label><br>
-	<input type="radio" id="fusion" name="power_type" value="  fusion"
-	<label for="power_type">Nuclear fusion reactor</label><br>
-	<input type="radio" id="steam" name="power_type" value=" steam"
-	<label for="power_type">Steam engine</label><br>
-	<input type="radio" id="bio" name="power_type" value="bio"
-	<label for="power_type">Bio-fuelled internal combustion engine</label><br>
-	<input type="radio" id="electric" name="power_type" value="electric"
-	<label for="power_type">Lithium-ion battery</label><br>
-	<input type="radio" id="rocket" name="power_type" value="rocket"
-	<label for="power_type">Rocket fuel</label><br>
-	<input type="radio" id="hamster" name="power_type" value="hamster"
-	<label for="power_type">Hamster</label><br>
-	<input type="radio" id="thermo" name="power_type" value="thermo"
-	<label for="power_type">Thermonuclear reactor</label><br>
-	<input type="radio" id="solar" name="power_type" value="solar"
-	<label for="power_type">Bank of solar panels</label><br>
-	<input type="radio" id="wind" name="power_type" value="wind"
-	<label for="power_type">Sailing rig</label><br>
+	</p> <br>
 	
+	<p> <br>
+    Buggy engines
+   </p> </br>
+   
+   	<p>
+	<label for="power_type">Buggy primary engine:</label>
+	<select name="power_type" id="power_type">
+    <option value="petrol">Petroleum-fuelled internal combustion engine </option>
+    <option value="fusion">Nuclear fusion reactor</option>
+    <option value="steam">Steam engine</option>
+    <option value="bio">Bio-fuelled internal combustion engine</option>
+	<option value="electric">Lithium-ion battery</option>
+	<option value="rocket">Rocket fuel</option>
+	<option value="hamster">Hamster</option>
+	<option value="thermo">Thermonuclear reactor</option>
+	<option value="solar">Bank of solar panels</option>
+	<option value="wind">Sailing rig</option>
+	</select>
+	</p>
+
 	<label for="power_units">Primary motive power units:</label>
     <input type="text" name="power_units" /> <br>
 	
 	<p>
-    Buggy auxiliary engine:
-   </p>
-	<input type="radio" id="none" name="aux_power_type" value="none"
-	<label for="aux_power_type">None</label><br>
-	<input type="radio" id="petrol" name="aux_power_type" value="petrol"
-	<label for="aux_power_type">Petroleum-fuelled internal combustion engine </label><br>
-	<input type="radio" id="fusion" name="aux_power_type" value="  fusion"
-	<label for="aux_power_type">Nuclear fusion reactor</label><br>
-	<input type="radio" id="steam" name="aux_power_type" value=" steam"
-	<label for="aux_power_type">Steam engine</label><br>
-	<input type="radio" id="bio" name="aux_power_type" value="bio"
-	<label for="aux_power_type">Bio-fuelled internal combustion engine</label><br>
-	<input type="radio" id="electric" name="aux_power_type" value="electric"
-	<label for="aux_power_type">Lithium-ion battery</label><br>
-	<input type="radio" id="rocket" name="aux_power_type" value="rocket"
-	<label for="aux_power_type">Rocket fuel</label><br>
-	<input type="radio" id="hamster" name="aux_power_type" value="hamster"
-	<label for="aux_power_type">Hamster</label><br>
-	<input type="radio" id="thermo" name="aux_power_type" value="thermo"
-	<label for="aux_power_type">Thermonuclear reactor</label><br>
-	<input type="radio" id="solar" name="aux_power_type" value="solar"
-	<label for="aux_power_type">Bank of solar panels</label><br>
-	<input type="radio" id="wind" name="aux_power_type" value="wind"
-	<label for="aux_power_type">Sailing rig</label><br>
+   <label for="aux_power_type">Buggy auxiliary engine:</label>
+	<select name="aux_power_type" id="aux_power_type">
+	<option value="none">None</option>
+    <option value="petrol">Petroleum-fuelled internal combustion engine </option>
+    <option value="fusion">Nuclear fusion reactor</option>
+    <option value="steam">Steam engine</option>
+    <option value="bio">Bio-fuelled internal combustion engine</option>
+	<option value="electric">Lithium-ion battery</option>
+	<option value="rocket">Rocket fuel</option>
+	<option value="hamster">Hamster</option>
+	<option value="thermo">Thermonuclear reactor</option>
+	<option value="solar">Bank of solar panels</option>
+	<option value="wind">Sailing rig</option>
+	</select>
+	<br>
+	</p>
 	
+	<p>
 	<label for="aux_power_units">Auxiliary motive power units:(leave blank if None)</label>
     <input type="text" name="aux_power_units" /> <br>
+	</p>
 	
 	<label for="hamster_booster">Hamster boosters:</label>
     <input type="text" name="hamster_booster" /> <br>
+	
+	
+	
 	
 	
 
