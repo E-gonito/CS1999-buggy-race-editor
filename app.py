@@ -98,13 +98,15 @@ def create_buggy():
     if not qty_tyres.isdigit() or int(qty_tyres) < int(qty_wheels):
         msg = "You have entered a invalid number for the amount of tyres, please insert a integer and make sure you don't have less tyres than wheels"
         return render_template("buggy-form.html", msg=msg)
+    #armour
+    armour = request.form['armour']
 
     try:
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
         cur.execute(
-           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=? WHERE id=?",
-           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, DEFAULT_BUGGY_ID)
+           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=? WHERE id=?",
+           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, DEFAULT_BUGGY_ID)
          )
         con.commit()
         msg = "Record successfully saved"
