@@ -151,12 +151,18 @@ def create_buggy():
                    "aluminium": "50", "thinsteel": "200", "thicksteel": "400", "titanium": "300" , "spike": "10",
                    "flame": "12", "charge": "25", "biohazard": "10", "banging":"42", "petrol": "2", "fusion": "100",
                    "steam": "4", "bio": "2", "electric": "20", "rocket": "2", "hamster": "1", "thermo": "100",
-                   "solar": "30", "wind": "30"}
+                   "solar": "30", "wind": "30", "none":"0"}
 
     tyres_weight = int(weight_dict[tyres])*int(qty_tyres)
     power_weight = int(weight_dict[power_type])*int(power_units)
     aux_power_weight = int(weight_dict[aux_power_type]) * int(aux_power_units)
     attack_weight = int(weight_dict[attack]) * int(qty_attacks)
+    if int(qty_tyres) > 4:
+        weight_mtply2 = int(qty_tyres)-4
+        weight_mtply3 = weight_mtply2*10
+        weight_mtply = weight_mtply3+100
+    else:
+        weight_mtply = 1
 
     armour_weight = int(weight_dict[armour]) * int(qty_wheels)
 
@@ -171,15 +177,20 @@ def create_buggy():
     if antibiotic == "true":
         total_cost += int(cost_dict["antibiotic"])
     if power_type in cost_dict:
-        total_cost += int(cost_dict[power_type])
+        total_cost += int(cost_dict[power_type])*int(power_units)
     if aux_power_type in cost_dict:
-        total_cost += int(cost_dict[aux_power_type])
+        total_cost += int(cost_dict[aux_power_type])*int(aux_power_units)
     if tyres in cost_dict:
-        total_cost += int(cost_dict[tyres])
+        total_cost += int(cost_dict[tyres])*int(qty_tyres)
     if attack in cost_dict:
-        total_cost += int(cost_dict[attack])
+        total_cost += int(cost_dict[attack])*int(qty_attacks)
     if armour in cost_dict:
-        total_cost += int(cost_dict[armour])
+        armour_precost = (int(cost_dict[armour])*int(qty_tyres))*weight_mtply
+        armour_cost = armour_precost/100
+        total_cost += int(armour_cost)
+    if int(weight_mtply) == 1:
+        total_cost += int(cost_dict[armour])*int(qty_tyres)
+
 
 
     try:
