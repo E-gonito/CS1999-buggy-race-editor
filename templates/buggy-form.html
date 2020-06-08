@@ -22,7 +22,8 @@
     <form action="/new" method="post">
 	<p>
     <label for="qty_wheels">Number of wheels:</label>
-    <input type="text" name="qty_wheels"/> <br>
+    <input type="text" name="qty_wheels" value="{{ buggy['qty_wheels'] }}" /> 
+	<br>
 	</p>
 
 	<p>
@@ -38,17 +39,17 @@
 	
 	<p>
     <label for="qty_tyres">Number of tyres:</label>
-    <input type="text" name="qty_tyres" /> <br>
+    <input type="text" name="qty_tyres" value="{{ buggy['qty_tyres'] }}" /> <br>
 	</p>
 	
     <p>
     <label for="flag_color">Flag's colour:</label>
-    <input type="text" name="flag_color"/> <br>
+    <input type="text" name="flag_color" value="{{ buggy['flag_color'] }}"/>  <br>
 	</p>
 	
 	<p>
 	<label for="flag_color_secondary">Flag's secondary colour:</label>
-    <input type="text" name="flag_color_secondary"/> <br>
+    <input type="text" name="flag_color_secondary" value="{{ buggy['flag_color_secondary'] }}"/> <br>
 	</p>
 	
 	<p>
@@ -93,7 +94,7 @@
 	
     <p>
 	<label for="power_units">Primary motive power units:</label>
-    <input type="text" name="power_units"/> <br>
+    <input type="text" name="power_units" value="{{ buggy['power_units'] }}" /> <br>
 	</p>
 	
 	<p>
@@ -116,12 +117,12 @@
 	
 	<p>
 	<label for="aux_power_units">Auxiliary motive power units:(leave blank if None)</label>
-    <input type="text" name="aux_power_units"<br>
+    <input type="text" name="aux_power_units" value="{{ buggy['aux_power_units'] }}" /><br>
 	</p>
 	
 	<p>
 	<label for="hamster_booster">Hamster boosters:</label>
-    <input type="text" name="hamster_booster"<br>
+    <input type="text" name="hamster_booster" value="{{ buggy['hamster_booster'] }}" /><br>
 	</p>
 	
 	<p> <br> <u>
@@ -181,7 +182,7 @@
 	
 	<p>
     <label for="qty_attacks">Number of attacks:</label>
-    <input type="text" name="qty_attacks"/> <br>
+    <input type="text" name="qty_attacks" value="{{ buggy['qty_attacks'] }}"/> <br>
 	</p>
 	
 	<p>
