@@ -39,7 +39,8 @@ con.execute("""
     qty_tyres             INTEGER DEFAULT 4,
     armour                VARCHAR(20),
     fireproof             BOOLEAN,
-    insulated             BOOLEAN
+    insulated             BOOLEAN,
+    antibiotic            BOOLEAN
     
     
   )
