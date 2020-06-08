@@ -21,13 +21,13 @@
   
     <form action="/new" method="post">
 	<p>
-    <label for="qty_wheels">Number of wheels:</label>
-    <input type="text" name="qty_wheels" /> <br>
+    <label for="qty_wheels" >Number of wheels:</label> 
+    <input type="text" name="qty_wheels" value="{{ buggy['qty_wheels'] }}"/> <br>
 	</p>
 
 	<p>
 	<label for="tyres">Type of tyre:</label>
-	<select name="tyres" id="tyres">
+	<select name="tyres" id="tyres" value="{{ buggy['tyres'] }}">
     <option value="knobbly">Knobbly</option>
     <option value="slick">Slick</option>
     <option value="steelband">Steel banded</option>
@@ -38,22 +38,22 @@
 	
 	<p>
     <label for="qty_tyres">Number of tyres:</label>
-    <input type="text" name="qty_tyres" /> <br>
+    <input type="text" name="qty_tyres" value="{{ buggy['qty_tyres'] }}" /> <br>
 	</p>
 	
     <p>
     <label for="flag_color">Flag's colour:</label>
-    <input type="text" name="flag_color" /> <br>
+    <input type="text" name="flag_color" value="{{ buggy['flag_color'] }}" /> <br>
 	</p>
 	
 	<p>
 	<label for="flag_color_secondary">Flag's secondary colour:</label>
-    <input type="text" name="flag_color_secondary" /> <br>
+    <input type="text" name="flag_color_secondary" value="{{ buggy['flag_color_secondary'] }}" /> <br>
 	</p>
 	
 	<p>
 	<label for="flag_pattern">Flag Pattern:</label>
-	<select name="flag_pattern" id="flag_pattern">
+	<select name="flag_pattern" id="flag_pattern" value="{{ buggy['flag_pattern'] }}">
     <option value="plain">Plain</option>
     <option value="vstripe">Vertical stripes</option>
     <option value="hstripe">Horizontal stripes</option>
@@ -65,9 +65,9 @@
 	
 	<p> 
 	Monster sound system installed:<br>
-	<input type="radio" id="True" name="banging" value="True">
+	<input type="radio" id="True" name="banging" value="{{ buggy['banging'] }}">
 	<label for="banging">True</label><br>
-	<input type="radio" id="False" name="banging" value="False">
+	<input type="radio" id="False" name="banging" value="{{ buggy['banging'] }}">
 	<label for="banging">False</label><br>
 	<br>
 	</p> 
@@ -78,7 +78,7 @@
    
    	<p>
 	<label for="power_type">Buggy primary engine:</label>
-	<select name="power_type" id="power_type">
+	<select name="power_type" id="power_type" value="{{ buggy['power_type'] }}">
     <option value="petrol">Petroleum-fuelled internal combustion engine </option>
     <option value="fusion">Nuclear fusion reactor</option>
     <option value="steam">Steam engine</option>
@@ -94,12 +94,12 @@
 	
     <p>
 	<label for="power_units">Primary motive power units:</label>
-    <input type="text" name="power_units" /> <br>
+    <input type="text" name="power_units" value="{{ buggy['power_units'] }}" /> <br>
 	</p>
 	
 	<p>
 	<label for="aux_power_type">Buggy auxiliary engine:</label>
-	<select name="aux_power_type" id="aux_power_type">
+	<select name="aux_power_type" id="aux_power_type" value="{{ buggy['aux_power_type'] }}">
 	<option value="none">None</option>
     <option value="petrol">Petroleum-fuelled internal combustion engine </option>
     <option value="fusion">Nuclear fusion reactor</option>
@@ -117,12 +117,12 @@
 	
 	<p>
 	<label for="aux_power_units">Auxiliary motive power units:(leave blank if None)</label>
-    <input type="text" name="aux_power_units" /> <br>
+    <input type="text" name="aux_power_units" value= "{{ buggy['aux_power_units'] }}"/> <br>
 	</p>
 	
 	<p>
 	<label for="hamster_booster">Hamster boosters:</label>
-    <input type="text" name="hamster_booster" /> <br>
+    <input type="text" name="hamster_booster" value= "{{ buggy['hamster_booster'] }}" /> <br>
 	</p>
 	
 	<p> <br> <u>
@@ -131,7 +131,7 @@
    
 	<p>
 	<label for="armour">Armour:</label>
-	<select name="armour" id="armour">
+	<select name="armour" id="armour" value="{{ buggy['armour'] }}">
 	<option value="none">None</option>
     <option value="wood">Wood</option>
     <option value="aluminium">Aluminium</option>
@@ -142,23 +142,23 @@
 	</p>
 	
 	<p>Fireproof:<br>
-	<input type="radio" id="True" name="fireproof" value="True">
+	<input type="radio" id="True" name="fireproof" value="{{ buggy['banging'] }}">
 	<label for="fireproof">True</label><br>
-	<input type="radio" id="False" name="fireproof" value="False">
+	<input type="radio" id="False" name="fireproof" value="{{ buggy['banging'] }}">
 	<label for="fireproof">False</label><br>
 	<br>
 	
 	Insulated:<br>
-	<input type="radio" id="True" name="insulated" value="True">
+	<input type="radio" id="True" name="insulated" value="{{ buggy['banging'] }}">
 	<label for="insulated">True</label><br>
-	<input type="radio" id="False" name="insulated" value="False">
+	<input type="radio" id="False" name="insulated" value="{{ buggy['banging'] }}">
 	<label for="insulated">False</label><br>
 	<br>
 	
 	Antibiotic:<br>
-	<input type="radio" id="True" name="antibiotic" value="True">
+	<input type="radio" id="True" name="antibiotic" value="{{ buggy['banging'] }}">
 	<label for="antibiotic">True</label><br>
-	<input type="radio" id="False" name="antibiotic" value="False">
+	<input type="radio" id="False" name="antibiotic" value="{{ buggy['banging'] }}">
 	<label for="antibiotic">False</label><br>
 	<br>
 	
@@ -169,7 +169,7 @@
    
 	<p>
 	<label for="attack">Offensive capability :</label>
-	<select name="attack" id="attack">
+	<select name="attack" id="attack" value="{{ buggy['attack'] }}">
     <option value="none">None</option>
     <option value="spike">Spikes</option>
     <option value="flame">Flamethrower</option>
@@ -180,12 +180,12 @@
 	
 	<p>
     <label for="qty_attacks">Number of attacks:</label>
-    <input type="text" name="qty_attacks" /> <br>
+    <input type="text" name="qty_attacks" value="{{ buggy['qty_attacks'] }}"/> <br>
 	</p>
 	
 	<p>
 	<label for="algo">Race computer algorithm:</label>
-	<select name="algo" id="algo">
+	<select name="algo" id="algo" value="{{ buggy['algo'] }}" >
     <option value="steady">Steady</option>
     <option value="defensive">Defensive</option>
     <option value="offensive">Offensive</option>
