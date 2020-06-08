@@ -5,22 +5,26 @@
 {% block content %}
 
 
-  <h1>Make buggy</h1>
+   <h1>
+   <img src="/static/title.png">
+  </h1>
+
   
-   <p>
+   <p style="color:red">
     {{ msg }}
-  </p>
-  
-  <p> 
+   </p>
+    
+   
+   <p> <u>
     Buggy aesthetics
-   </p> <br>
+   </p> <br> </u>
   
-  <form action="/new" method="post">
+    <form action="/new" method="post">
 	<p>
     <label for="qty_wheels">Number of wheels:</label>
     <input type="text" name="qty_wheels" /> <br>
 	</p>
-	
+
 	<p>
 	<label for="tyres">Type of tyre:</label>
 	<select name="tyres" id="tyres">
@@ -36,14 +40,17 @@
     <label for="qty_tyres">Number of tyres:</label>
     <input type="text" name="qty_tyres" /> <br>
 	</p>
-
+	
+    <p>
     <label for="flag_color">Flag's colour:</label>
     <input type="text" name="flag_color" /> <br>
+	</p>
 	
 	<p>
 	<label for="flag_color_secondary">Flag's secondary colour:</label>
     <input type="text" name="flag_color_secondary" /> <br>
 	</p>
+	
 	<p>
 	<label for="flag_pattern">Flag Pattern:</label>
 	<select name="flag_pattern" id="flag_pattern">
@@ -54,18 +61,20 @@
 	<option value="checker">Checkers</option>
 	<option value="spot">Spots</option>
 	</select>
-	</p> <br>
+	</p>
 	
+	<p> 
 	Monster sound system installed:<br>
 	<input type="radio" id="True" name="banging" value="True">
 	<label for="banging">True</label><br>
 	<input type="radio" id="False" name="banging" value="False">
 	<label for="banging">False</label><br>
 	<br>
+	</p> 
 	
-	<p> <br>
+	<p> <br> <u>
     Buggy engines
-   </p> </br>
+    </p> </br> </u>
    
    	<p>
 	<label for="power_type">Buggy primary engine:</label>
@@ -82,9 +91,11 @@
 	<option value="wind">Sailing rig</option>
 	</select>
 	</p>
-
+	
+    <p>
 	<label for="power_units">Primary motive power units:</label>
     <input type="text" name="power_units" /> <br>
+	</p>
 	
 	<p>
 	<label for="aux_power_type">Buggy auxiliary engine:</label>
@@ -109,12 +120,14 @@
     <input type="text" name="aux_power_units" /> <br>
 	</p>
 	
+	<p>
 	<label for="hamster_booster">Hamster boosters:</label>
     <input type="text" name="hamster_booster" /> <br>
+	</p>
 	
-	<p> <br>
+	<p> <br> <u>
     Buggy Defense
-   </p> </br>
+   </p> </br> </u>
    
 	<p>
 	<label for="armour">Armour:</label>
@@ -149,9 +162,10 @@
 	<label for="antibiotic">False</label><br>
 	<br>
 	
-	<p> <br>
+	
+	<p> <br> <u>
     Buggy Offense
-   </p> </br>
+   </p> </br> </u>
    
 	<p>
 	<label for="attack">Offensive capability :</label>
@@ -180,17 +194,14 @@
 	<option value="buggy">Buggy</option>
 	</select>
 	</p>
-   
-	
-	
-
-	
-	
-	
+    
+	<p>
     <input type="submit" class="button"> 
+	</p>
+	
   </form>
   <p>
-    <a href="/" class="button">home</a>
+    <a href="/" class="button">Home</a>
    </p>
   
 {% endblock %}

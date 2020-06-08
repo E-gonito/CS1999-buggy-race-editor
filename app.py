@@ -8,7 +8,6 @@ DATABASE_FILE = "database.db"
 DEFAULT_BUGGY_ID = "1"
 
 BUGGY_RACE_SERVER_URL = "http://rhul.buggyrace.net"
-all_colours = ['black','silver','gray','white','maroon','red','purple','fuchsia','green','lime','olive','yellow','navy','blue','teal','aqua','orange','aliceblue','antiquewhite','aquamarine','azure,beige','bisque,blanchedalmond','blueviolet,brown','burlywood','cadetblue','chartreuse','chocolate,coral','cornflowerblue','cornsilk,crimson','cyan','darkblue,darkcyan','darkgoldenrod','darkgray','darkgreen','darkgrey','darkkhaki','darkmagenta','darkolivegreen','darkorange','darkorchid','darkred','darksalmon','darkseagreen','darkslateblue','darkslategray','darkslategrey','darkturquoise','darkviolet','deeppink','deepskyblue','dimgray','dimgrey','dodgerblue','firebrick','floralwhite','forestgreen','gainsboro','ghostwhite','gold','goldenrod','greenyellow','grey','honeydew','hotpink','indianred','indigo','ivory','khaki','lavender','lavenderblush','lawngreen','lemonchiffon','lightblue','lightcoral','lightcyan','lightgoldenrodyellow','lightgray','lightgreen','lightgrey','lightpink','lightsalmon','lightseagreen','lightskyblue','lightslategray','lightslategrey','lightsteelblue','lightyellow','limegreen','linen','magenta','mediumaquamarine','mediumblue','mediumorchid','mediumpurple','mediumseagreen','mediumslateblue','mediumspringgreen','mediumturquoise','mediumvioletred','midnightblue','mintcream','mistyrose','moccasin','navajowhite','oldlace','olivedrab','orangered','orchid','palegoldenrod','palegreen','paleturquoise','palevioletred','papayawhip','peachpuff','peru','pink','plum','powderblue','rosybrown','royalblue','saddlebrown','salmon','sandybrown','seagreen','seashell','sienna','skyblue','slateblue','slategray','slategrey','snow','springgreen','steelblue','tan','thistle','tomato','turquoise','violet','wheat','whitesmoke','yellowgreen','rebeccapurple']
 #------------------------------------------------------------
 # the index page
 #------------------------------------------------------------
@@ -57,6 +56,8 @@ def create_buggy():
     if flag_color not in all_colours and not match:
       msg = "You have not entered a correct CSS colour for the primary flag colour, please use a colour keyword such as 'red' or a correct RGB hex value like '#ff0000"
       return render_template("buggy-form.html", msg=msg)
+    if flag_color == "":
+        flag_color = 'white'
     #flag_color_secondary
     flag_color_secondary = request.form['flag_color_secondary']
     match2 = re.search(r'^#(?:[0-9a-fA-F]{3}){1,2}$', flag_color_secondary)
@@ -88,7 +89,6 @@ def create_buggy():
         if not hamster_booster.isdigit():
             msg = "You have entered a invalid number for the amount of hamster boosters, please insert a integer"
             return render_template("buggy-form.html", msg=msg)
-
     else:
         hamster_booster = 0
     #Type of tyres
