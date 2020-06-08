@@ -30,6 +30,7 @@ con.execute("""
     flag_color            VARCHAR(20),
     flag_color_secondary  VARCHAR(20),
     flag_pattern          VARCHAR(20),
+    banging               BOOLEAN,
     power_type            VARCHAR(20),
     power_units           INTEGER DEFAULT 1,
     aux_power_type        VARCHAR(20),
@@ -41,8 +42,9 @@ con.execute("""
     fireproof             BOOLEAN,
     insulated             BOOLEAN,
     antibiotic            BOOLEAN,
-    banging               BOOLEAN,
-    attack                VARCHAR(20)
+    attack                VARCHAR(20),
+    qty_attacks           INTEGER DEFAULT 0,
+    algo                  VARCHAR(20) 
     
     
   )
