@@ -40,7 +40,9 @@ con.execute("""
     armour                VARCHAR(20),
     fireproof             BOOLEAN,
     insulated             BOOLEAN,
-    antibiotic            BOOLEAN
+    antibiotic            BOOLEAN,
+    banging               BOOLEAN,
+    attack                VARCHAR(20)
     
     
   )
