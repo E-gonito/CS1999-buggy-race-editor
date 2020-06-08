@@ -24,29 +24,25 @@
 	
 	<label for="flag_color_secondary">Flag's secondary colour:</label>
     <input type="text" name="flag_color_secondary" /> <br>
-	
-	<p>Flag Pattern:</p>
-	<input type="radio" id="plain" name="flag_pattern" value="plain"
-	<label for="flag_pattern">Plain</label><br>
-	<input type="radio" id=" vstripe" name="flag_pattern" value=" vstripe"
-	<label for="flag_pattern">vertical stripes</label><br>
-	<input type="radio" id="hstripe" name="flag_pattern" value="hstripe"
-	<label for="flag_pattern">horizontal stripes</label><br>
-	<input type="radio" id="dstripe" name="flag_pattern" value="dstripe"
-	<label for="flag_pattern">diaganol stripes</label><br>
-	<input type="radio" id="checker" name="flag_pattern" value="checker"
-	<label for="flag_pattern">checkers</label><br>
-	<input type="radio" id="spot" name="flag_pattern" value="spot"
-	<label for="flag_pattern">spots</label><br>
-	
+	<p>
+	 <label for="flag_pattern">Flag Pattern:</label>
+	<select name="flag_pattern" id="flag_pattern">
+    <option value="plain">Plain</option>
+    <option value="vstripe">Vertical stripes</option>
+    <option value="hstripe">Horizontal stripes</option>
+    <option value="dstripe">Diaganol stripes</option>
+	<option value="checker">Checkers</option>
+	<option value="spot">Spots</option>
+	</select>
+	</p>
 	<p>
     Buggy primary engine:
    </p>
    <input type="radio" id="petrol" name="power_type" value="petrol"
 	<label for="power_type">Petroleum-fuelled internal combustion engine </label><br>
-	<input type="radio" id="  fusion" name="power_type" value="  fusion"
+	<input type="radio" id="fusion" name="power_type" value="  fusion"
 	<label for="power_type">Nuclear fusion reactor</label><br>
-	<input type="radio" id=" steam" name="power_type" value=" steam"
+	<input type="radio" id="steam" name="power_type" value=" steam"
 	<label for="power_type">Steam engine</label><br>
 	<input type="radio" id="bio" name="power_type" value="bio"
 	<label for="power_type">Bio-fuelled internal combustion engine</label><br>
@@ -70,12 +66,12 @@
     Buggy auxiliary engine:
    </p>
 	<input type="radio" id="none" name="aux_power_type" value="none"
-	<label for="aux_power_type">none</label><br>
+	<label for="aux_power_type">None</label><br>
 	<input type="radio" id="petrol" name="aux_power_type" value="petrol"
 	<label for="aux_power_type">Petroleum-fuelled internal combustion engine </label><br>
-	<input type="radio" id="  fusion" name="aux_power_type" value="  fusion"
+	<input type="radio" id="fusion" name="aux_power_type" value="  fusion"
 	<label for="aux_power_type">Nuclear fusion reactor</label><br>
-	<input type="radio" id=" steam" name="aux_power_type" value=" steam"
+	<input type="radio" id="steam" name="aux_power_type" value=" steam"
 	<label for="aux_power_type">Steam engine</label><br>
 	<input type="radio" id="bio" name="aux_power_type" value="bio"
 	<label for="aux_power_type">Bio-fuelled internal combustion engine</label><br>
@@ -92,8 +88,12 @@
 	<input type="radio" id="wind" name="aux_power_type" value="wind"
 	<label for="aux_power_type">Sailing rig</label><br>
 	
-	<label for="aux_power_units">Auxiliary motive power units:(leave blank if none)</label>
+	<label for="aux_power_units">Auxiliary motive power units:(leave blank if None)</label>
     <input type="text" name="aux_power_units" /> <br>
+	
+	<label for="hamster_booster">Hamster boosters:</label>
+    <input type="text" name="hamster_booster" /> <br>
+	
 	
 
    

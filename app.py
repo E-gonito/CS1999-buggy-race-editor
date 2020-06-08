@@ -82,13 +82,22 @@ def create_buggy():
         if not aux_power_units.isdigit():
             msg = "You have entered a invalid unit for the Auxiliary motive power units, it must be 0 or greater"
             return render_template("buggy-form.html", msg=msg)
+    #hamster_booster
+    if power_type == 'hamster' or aux_power_type == 'hamster':
+        hamster_booster = request.form['hamster_booster']
+        if not hamster_booster.isdigit():
+            msg = "You have entered a invalid number for the amount of hamster boosters, please insert a integer"
+    else:
+        hamster_booster = 0
+
+
 
     try:
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
         cur.execute(
-           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=? WHERE id=?",
-           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, DEFAULT_BUGGY_ID)
+           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=? WHERE id=?",
+           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, DEFAULT_BUGGY_ID)
          )
         con.commit()
         msg = "Record successfully saved"
