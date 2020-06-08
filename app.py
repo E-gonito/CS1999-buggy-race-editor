@@ -46,8 +46,8 @@ def create_buggy():
                    'snow', 'springgreen', 'steelblue', 'tan', 'thistle', 'tomato', 'turquoise', 'violet', 'wheat',
                    'whitesmoke', 'yellowgreen', 'rebeccapurple')
     msg=""
+    # number of wheels
     qty_wheels = request.form['qty_wheels']
-    #number of wheels
     if not qty_wheels.isdigit() or int(qty_wheels)<4 or int(qty_wheels)%2 != 0 :
       msg = "You have not entered a valid number of wheels, your input must be numbers only, even and greater than 4!"
       return render_template("buggy-form.html", msg=msg)
@@ -87,16 +87,24 @@ def create_buggy():
         hamster_booster = request.form['hamster_booster']
         if not hamster_booster.isdigit():
             msg = "You have entered a invalid number for the amount of hamster boosters, please insert a integer"
+            return render_template("buggy-form.html", msg=msg)
+
     else:
         hamster_booster = 0
     #Type of tyres
     tyres = request.form['tyres']
+    #number of tyres
+    qty_tyres = request.form['qty_tyres']
+    if not qty_tyres.isdigit() or int(qty_tyres) < int(qty_wheels):
+        msg = "You have entered a invalid number for the amount of tyres, please insert a integer and make sure you don't have less tyres than wheels"
+        return render_template("buggy-form.html", msg=msg)
+
     try:
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
         cur.execute(
-           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=? WHERE id=?",
-           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, DEFAULT_BUGGY_ID)
+           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=? WHERE id=?",
+           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, DEFAULT_BUGGY_ID)
          )
         con.commit()
         msg = "Record successfully saved"
