@@ -45,7 +45,7 @@ con.execute("""
     attack                VARCHAR(20) DEFAULT 'none',
     qty_attacks           INTEGER DEFAULT 0,
     algo                  VARCHAR(20) DEFAULT 'steady',
-    total_cost            INTERGER
+    total_cost            INTERGER DEFAULT 64
     
     
   )

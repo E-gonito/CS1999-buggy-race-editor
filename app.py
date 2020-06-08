@@ -52,9 +52,7 @@ def create_buggy():
                    'snow', 'springgreen', 'steelblue', 'tan', 'thistle', 'tomato', 'turquoise', 'violet', 'wheat',
                    'whitesmoke', 'yellowgreen', 'rebeccapurple')
     msg=""
-    total_cost = 0
-    c_power_list = ("fusion","thermo","solar","wind")
-    power_dict = {"":"",}
+    c_power_list = ("fusion", "thermo", "solar", "wind")
 
     con = sql.connect(DATABASE_FILE)
     con.row_factory = sql.Row
@@ -140,13 +138,56 @@ def create_buggy():
         return render_template("buggy-form.html", msg=msg, buggy = record)
     #algo
     algo = request.form['algo']
+    #cost calculator
+    total_cost = int(0)
+
+    cost_dict = {"petrol": "4", "fusion": "400*", "steam": "3", "bio": "5", "electric": "20", "rocket": "16",
+                 "hamster": "3", "thermo": "300*", "solar": "40*", "wind": "20*", "knobbly": "15", "slick": "10",
+                 "steelband": "20", "reactive": "40", "maglev":"50", "none": "0", "wood": "40", "aluminium": "200",
+                 "thinsteel": "100", "thicksteel": "200", "titanium": "290", "spike": "5", "flame": "20",
+                 "charge": "28", "biohazard": "30", "banging":"42","fireproof":"70","insulated":"100","antibiotic":"90"}
+
+    weight_dict = {"knobbly":"20" , "slick": "14", "steelband": "28", "reactive": "20", "maglev":"30", "wood": "100",
+                   "aluminium": "50", "thinsteel": "200", "thicksteel": "400", "titanium": "300" , "spike": "10",
+                   "flame": "12", "charge": "25", "biohazard": "10", "banging":"42", "petrol": "2", "fusion": "100",
+                   "steam": "4", "bio": "2", "electric": "20", "rocket": "2", "hamster": "1", "thermo": "100",
+                   "solar": "30", "wind": "30"}
+
+    tyres_weight = int(weight_dict[tyres])*int(qty_tyres)
+    power_weight = int(weight_dict[power_type])*int(power_units)
+    aux_power_weight = int(weight_dict[aux_power_type]) * int(aux_power_units)
+    attack_weight = int(weight_dict[attack]) * int(qty_attacks)
+
+    armour_weight = int(weight_dict[armour]) * int(qty_wheels)
+
+
+
+    if banging == "true":
+        total_cost += int(cost_dict["banging"])
+    if fireproof == "true":
+        total_cost += int(cost_dict["fireproof"])
+    if insulated == "true":
+        total_cost += int(cost_dict["insulated"])
+    if antibiotic == "true":
+        total_cost += int(cost_dict["antibiotic"])
+    if power_type in cost_dict:
+        total_cost += int(cost_dict[power_type])
+    if aux_power_type in cost_dict:
+        total_cost += int(cost_dict[aux_power_type])
+    if tyres in cost_dict:
+        total_cost += int(cost_dict[tyres])
+    if attack in cost_dict:
+        total_cost += int(cost_dict[attack])
+    if armour in cost_dict:
+        total_cost += int(cost_dict[armour])
+
 
     try:
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
         cur.execute(
-           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, fireproof=?, insulated=?, antibiotic=?, banging=?, attack=?, qty_attacks=?, algo=? WHERE id=?",
-           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, DEFAULT_BUGGY_ID)
+           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, fireproof=?, insulated=?, antibiotic=?, banging=?, attack=?, qty_attacks=?, algo=?, total_cost=? WHERE id=?",
+           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost, DEFAULT_BUGGY_ID)
          )
         con.commit()
         msg = "Record successfully saved"
