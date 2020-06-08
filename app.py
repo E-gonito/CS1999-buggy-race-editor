@@ -74,12 +74,21 @@ def create_buggy():
         return render_template("buggy-form.html", msg=msg)
     #aux_power_type
     aux_power_type = request.form['aux_power_type']
+    #aux_power_units
+    if aux_power_type == 'none':
+        aux_power_units = 0
+    else:
+        aux_power_units = request.form['aux_power_units']
+        if not aux_power_units.isdigit():
+            msg = "You have entered a invalid unit for the Auxiliary motive power units, it must be 0 or greater"
+            return render_template("buggy-form.html", msg=msg)
+
     try:
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
         cur.execute(
-           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=? WHERE id=?",
-           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, DEFAULT_BUGGY_ID)
+           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=? WHERE id=?",
+           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, DEFAULT_BUGGY_ID)
          )
         con.commit()
         msg = "Record successfully saved"
