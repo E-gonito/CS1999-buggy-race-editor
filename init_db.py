@@ -27,24 +27,24 @@ con.execute("""
   CREATE TABLE IF NOT EXISTS buggies (
     id                    INTEGER PRIMARY KEY,
     qty_wheels            INTEGER DEFAULT 4,
-    flag_color            VARCHAR(20),
-    flag_color_secondary  VARCHAR(20),
-    flag_pattern          VARCHAR(20),
-    banging               BOOLEAN,
-    power_type            VARCHAR(20),
+    flag_color            VARCHAR(20) DEFAULT 'white',
+    flag_color_secondary  VARCHAR(20) DEFAULT 'black',
+    flag_pattern          VARCHAR(20) DEFAULT 'plain',
+    banging               BOOLEAN DEFAULT FALSE,
+    power_type            VARCHAR(20) DEFAULT 'petrol',
     power_units           INTEGER DEFAULT 1,
-    aux_power_type        VARCHAR(20),
+    aux_power_type        VARCHAR(20) DEFAULT 'none',
     aux_power_units       INTEGER DEFAULT 0,
     hamster_booster       INTEGER DEFAULT 0,
-    tyres                 VARCHAR(20),
+    tyres                 VARCHAR(20) DEFAULT 'knobbly',
     qty_tyres             INTEGER DEFAULT 4,
-    armour                VARCHAR(20),
-    fireproof             BOOLEAN,
-    insulated             BOOLEAN,
-    antibiotic            BOOLEAN,
-    attack                VARCHAR(20),
+    armour                VARCHAR(20) DEFAULT 'none',
+    fireproof             BOOLEAN DEFAULT FALSE,
+    insulated             BOOLEAN DEFAULT FALSE,
+    antibiotic            BOOLEAN DEFAULT FALSE,
+    attack                VARCHAR(20) DEFAULT 'none',
     qty_attacks           INTEGER DEFAULT 0,
-    algo                  VARCHAR(20) 
+    algo                  VARCHAR(20) DEFAULT 'steady' 
     
     
   )
