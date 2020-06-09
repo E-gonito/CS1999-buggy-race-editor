@@ -5,6 +5,7 @@
    <img src="/static/title3.png">
   </h1>
 
+{% for buggy in buggies %}
   <table style="border:1px solid black;margin-left:auto;margin-right:auto;">
    <tr>
      <td>ID:</td> <td> {{ buggy['id'] }} </td>
@@ -69,8 +70,9 @@
 	<tr>
      <td>Total cost:</td> <td> {{ buggy['total_cost'] }} </td>
     </tr>
-
   </table>
+ {% endfor %}
+
 
   <p>
     <a href="/" class="button">home</a>
