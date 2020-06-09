@@ -81,6 +81,9 @@ def create_buggy():
     if flag_color_secondary not in all_colours and not match2:
       msg = "You have not entered a correct CSS colour for the secondary flag colour, please use a colour keyword such as 'red' or a correct RGB hex value like '#ff0000"
       return render_template("buggy-form.html", msg=msg, buggy = None)
+    if flag_color_secondary == flag_color:
+        msg:"You have the same colour for the secondary and primary colours, please enter seperate colours"
+        return render_template("buggy-form.html", msg=msg, buggy=None)
     #Flag's pattern
     flag_pattern = request.form['flag_pattern']
     #power_type
