@@ -27,7 +27,7 @@ def create_buggy():
       cur = con.cursor()
       cur.execute("SELECT * FROM buggies")
       record = cur.fetchone();
-      return render_template("buggy-form.html", buggy = record)
+      return render_template("buggy-form.html", buggy = None)
 
   elif request.method == 'POST':
     all_colours = ('black', 'silver', 'gray', 'white', 'maroon', 'red', 'purple', 'fuchsia', 'green', 'lime', 'olive',
@@ -217,8 +217,23 @@ def create_buggy():
         algo = request.form['algo']
         total_cost = total_cost
 
+
         with sql.connect(DATABASE_FILE) as con:
             cur = con.cursor()
+           # value = cur.execute("SELECT id FROM buggies WHERE id=?", (buggy_id,))
+           # current_id = cur.fetchall()
+           # print("current_id " , current_id)
+          #  if current_id == None:
+               # cur.execute(
+               # "INSERT INTO buggies (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                #(qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost))
+                #con.commit()
+           # else:
+               # cur.execute(
+                #"UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, fireproof=?, insulated=?, antibiotic=?, banging=?, attack=?, qty_attacks=?, algo=?, total_cost=? WHERE id=?",
+                #(qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost, buggy_id)
+               # )
+
             if buggy_id.isdigit():
                 cur.execute(
                 "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, fireproof=?, insulated=?, antibiotic=?, banging=?, attack=?, qty_attacks=?, algo=?, total_cost=? WHERE id=?",
