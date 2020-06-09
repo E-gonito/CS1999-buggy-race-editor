@@ -167,12 +167,9 @@ def create_buggy():
         weight_mtply = 1
 
     armour_preweight = (int(weight_dict[armour]) * int(qty_wheels)) * weight_mtply
-    armour_weight = armour_precost / 100
+    armour_weight = armour_preweight / 100
 
     total_weight = tyres_weight+power_weight+aux_power_weight+attack_weight+armour_weight
-
-
-
 
     if banging == "true":
         total_cost += 42
@@ -191,23 +188,43 @@ def create_buggy():
     if attack in cost_dict:
         total_cost += int(cost_dict[attack])*int(qty_attacks)
     if armour in cost_dict:
-        armour_precost = (int(cost_dict[armour])*int(qty_tyres))*weight_mtply
+        armour_precost = (int(cost_dict[armour])*int(qty_wheels))*weight_mtply
         armour_cost = armour_precost/100
         total_cost += int(armour_cost)
     if int(weight_mtply) == 1:
         total_cost += int(cost_dict[armour])*int(qty_tyres)
 
-
-
     try:
-      with sql.connect(DATABASE_FILE) as con:
-        cur = con.cursor()
-        cur.execute(
-           "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, fireproof=?, insulated=?, antibiotic=?, banging=?, attack=?, qty_attacks=?, algo=?, total_cost=? WHERE id=?",
-           (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost, DEFAULT_BUGGY_ID)
-         )
-        con.commit()
-        msg = "Record successfully saved"
+        qty_wheels = request.form['qty_wheels']
+        flag_color = request.form['flag_color']
+        flag_color_secondary = request.form['flag_color_secondary']
+        flag_pattern = request.form['flag_pattern']
+        power_type = request.form['power_type']
+        power_units = request.form['power_units']
+        aux_power_type = request.form['aux_power_type']
+        aux_power_units = request.form['aux_power_units']
+        hamster_booster = request.form['hamster_booster']
+        tyres = request.form['tyres']
+        armour = request.form['armour']
+        fireproof = request.form['fireproof']
+        insulated = request.form['insulated']
+        antibiotic = request.form['antibiotic']
+        banging = request.form['banging']
+        attack = request.form['attack']
+        qty_attacks = request.form['qty_attacks']
+        algo = request.form['algo']
+        total_cost = total_cost
+
+        with sql.connect(DATABASE_FILE) as con:
+            cur = con.cursor()
+            cur.execute(
+           #"UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, fireproof=?, insulated=?, antibiotic=?, banging=?, attack=?, qty_attacks=?, algo=?, total_cost=? WHERE id=?",
+           #(qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost, DEFAULT_BUGGY_ID)
+           #)
+            "INSERT INTO buggies (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost))
+            con.commit()
+            msg = "Record successfully saved"
     except:
       con.rollback()
       msg = "error in update operation"
@@ -224,8 +241,8 @@ def show_buggies():
   con.row_factory = sql.Row
   cur = con.cursor()
   cur.execute("SELECT * FROM buggies")
-  record = cur.fetchone();
-  return render_template("buggy.html", buggy = record)
+  records = cur.fetchall();
+  return render_template("buggy.html", buggies = records)
 
 #------------------------------------------------------------
 # a page for displaying the buggy
