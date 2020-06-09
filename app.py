@@ -66,13 +66,13 @@ def create_buggy():
     qty_wheels = request.form['qty_wheels']
     if not qty_wheels.isdigit() or int(qty_wheels)<4 or int(qty_wheels)%2 != 0 :
       msg = "You have not entered a valid number of wheels, your input must be numbers only, even and greater than 4!"
-      return render_template("buggy-form.html", msg=msg, buggy = record)
+      return render_template("buggy-form.html", msg=msg, buggy = None)
     # flag colour
     flag_color = request.form['flag_color']
     match = re.search(r'^#(?:[0-9a-fA-F]{3}){1,2}$', flag_color)
     if flag_color not in all_colours and not match:
       msg = "You have not entered a correct CSS colour for the primary flag colour, please use a colour keyword such as 'red' or a correct RGB hex value like '#ff0000"
-      return render_template("buggy-form.html", msg=msg, buggy = record)
+      return render_template("buggy-form.html", msg=msg, buggy = None)
     if flag_color == "":
         flag_color = 'white'
     #flag_color_secondary
@@ -80,7 +80,7 @@ def create_buggy():
     match2 = re.search(r'^#(?:[0-9a-fA-F]{3}){1,2}$', flag_color_secondary)
     if flag_color_secondary not in all_colours and not match2:
       msg = "You have not entered a correct CSS colour for the secondary flag colour, please use a colour keyword such as 'red' or a correct RGB hex value like '#ff0000"
-      return render_template("buggy-form.html", msg=msg, buggy = record)
+      return render_template("buggy-form.html", msg=msg, buggy = None)
     #Flag's pattern
     flag_pattern = request.form['flag_pattern']
     #power_type
@@ -92,26 +92,26 @@ def create_buggy():
         return render_template("buggy-form.html", msg=msg)
     if power_type in c_power_list and int(power_units) > 1:
         msg = "Solar panels, sailing rigs, Nuclear and Thermonuclear reactors do not have consumable power units, please enter 1 as your power unit"
-        return render_template("buggy-form.html", msg=msg, buggy = record)
+        return render_template("buggy-form.html", msg=msg, buggy = None)
     #aux_power_type
     aux_power_type = request.form['aux_power_type']
     #aux_power_units
-    if aux_power_type == 'none':
+    if aux_power_type == 'none' or aux_power_type == "":
         aux_power_units = 0
     else:
         aux_power_units = request.form['aux_power_units']
         if not aux_power_units.isdigit():
             msg = "You have entered a invalid unit for the Auxiliary motive power units, it must be 0 or greater"
-            return render_template("buggy-form.html", msg=msg, buggy = record)
+            return render_template("buggy-form.html", msg=msg, buggy = None)
     if aux_power_type in c_power_list and int(aux_power_units) > 1:
         msg = "Solar panels, sailing rigs, Nuclear and Thermonuclear reactors do not have consumable power units, please enter 1 as your power unit"
-        return render_template("buggy-form.html", msg=msg, buggy = record)
+        return render_template("buggy-form.html", msg=msg, buggy = None)
     #hamster_booster
     if power_type == 'hamster' or aux_power_type == 'hamster':
         hamster_booster = request.form['hamster_booster']
         if not hamster_booster.isdigit():
             msg = "You have entered a invalid number for the amount of hamster boosters, please insert a integer"
-            return render_template("buggy-form.html", msg=msg, buggy = record)
+            return render_template("buggy-form.html", msg=msg, buggy = None)
     else:
         hamster_booster = 0
     #Type of tyres
@@ -120,7 +120,7 @@ def create_buggy():
     qty_tyres = request.form['qty_tyres']
     if not qty_tyres.isdigit() or int(qty_tyres) < int(qty_wheels):
         msg = "You have entered a invalid number for the amount of tyres, please insert a integer and make sure you don't have less tyres than wheels"
-        return render_template("buggy-form.html", msg=msg, buggy = record)
+        return render_template("buggy-form.html", msg=msg, buggy = None)
     #armour
     armour = request.form['armour']
     #fireproof
@@ -137,7 +137,7 @@ def create_buggy():
     qty_attacks = request.form['qty_attacks']
     if not qty_attacks.isdigit() or int(qty_attacks) < 0:
         msg = "You have entered a invalid number for the amount attacks, please enter a integer bigger than or equal to 0"
-        return render_template("buggy-form.html", msg=msg, buggy = record)
+        return render_template("buggy-form.html", msg=msg, buggy = None)
     #algo
     algo = request.form['algo']
 
