@@ -52,6 +52,8 @@ def create_buggy():
                    'snow', 'springgreen', 'steelblue', 'tan', 'thistle', 'tomato', 'turquoise', 'violet', 'wheat',
                    'whitesmoke', 'yellowgreen', 'rebeccapurple')
     msg=""
+    #buggy_id
+    buggy_id = request.form['id']
     c_power_list = ("fusion", "thermo", "solar", "wind")
 
     con = sql.connect(DATABASE_FILE)
@@ -217,13 +219,16 @@ def create_buggy():
 
         with sql.connect(DATABASE_FILE) as con:
             cur = con.cursor()
-            cur.execute(
-           #"UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, fireproof=?, insulated=?, antibiotic=?, banging=?, attack=?, qty_attacks=?, algo=?, total_cost=? WHERE id=?",
-           #(qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost, DEFAULT_BUGGY_ID)
-           #)
-            "INSERT INTO buggies (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost))
-            con.commit()
+            if buggy_id.isdigit():
+                cur.execute(
+                "UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, fireproof=?, insulated=?, antibiotic=?, banging=?, attack=?, qty_attacks=?, algo=?, total_cost=? WHERE id=?",
+                (qty_wheels, flag_color, flag_color_secondary,flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost, buggy_id)
+                )
+            else:
+                cur.execute(
+                "INSERT INTO buggies (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, fireproof, insulated, antibiotic, banging, attack, qty_attacks, algo, total_cost))
+                con.commit()
             msg = "Record successfully saved"
     except:
       con.rollback()
@@ -244,12 +249,18 @@ def show_buggies():
   records = cur.fetchall();
   return render_template("buggy.html", buggies = records)
 
+
 #------------------------------------------------------------
-# a page for displaying the buggy
+# a page for editing buggies
 #------------------------------------------------------------
-@app.route('/new')
-def edit_buggy():
-  return render_template("buggy-form.html")
+@app.route('/edit/<buggy_id>')
+def edit_buggy(buggy_id):
+  con = sql.connect(DATABASE_FILE)
+  con.row_factory = sql.Row
+  cur = con.cursor()
+  cur.execute("SELECT * FROM buggies WHERE id=?", (buggy_id,))
+  record = cur.fetchone();
+  return render_template("buggy-form.html", buggy = record)
 
 
 #------------------------------------------------------------
@@ -292,6 +303,9 @@ def delete_buggy():
   finally:
     con.close()
     return render_template("updated.html", msg = msg)
+
+
+
 
 
 if __name__ == '__main__':
