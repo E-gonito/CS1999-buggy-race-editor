@@ -299,9 +299,6 @@ def summary():
 
 #------------------------------------------------------------
 # delete the buggy
-#   don't want DELETE here, because we're anticipating
-#   there always being a record to update (because the
-#   student needs to change that!)
 #------------------------------------------------------------
 @app.route('/delete/<buggy_id>', methods = ['POST', 'GET'])
 def delete_buggy(buggy_id):
