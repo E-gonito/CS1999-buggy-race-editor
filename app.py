@@ -158,7 +158,6 @@ def create_buggy():
     power_weight = int(weight_dict[power_type])*int(power_units)
     aux_power_weight = int(weight_dict[aux_power_type]) * int(aux_power_units)
     attack_weight = int(weight_dict[attack]) * int(qty_attacks)
-    armour_weight = int(weight_dict[armour]) * int(qty_wheels)
 
     if int(qty_tyres) > 4:
         weight_mtply2 = int(qty_tyres)-4
@@ -167,6 +166,10 @@ def create_buggy():
     else:
         weight_mtply = 1
 
+    armour_preweight = (int(weight_dict[armour]) * int(qty_wheels)) * weight_mtply
+    armour_weight = armour_precost / 100
+
+    total_weight = tyres_weight+power_weight+aux_power_weight+attack_weight+armour_weight
 
 
 
