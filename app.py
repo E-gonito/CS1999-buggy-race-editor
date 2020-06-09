@@ -138,11 +138,12 @@ def create_buggy():
         return render_template("buggy-form.html", msg=msg, buggy = record)
     #algo
     algo = request.form['algo']
+
     #cost calculator
     total_cost = int(0)
 
-    cost_dict = {"petrol": "4", "fusion": "400*", "steam": "3", "bio": "5", "electric": "20", "rocket": "16",
-                 "hamster": "3", "thermo": "300*", "solar": "40*", "wind": "20*", "knobbly": "15", "slick": "10",
+    cost_dict = {"petrol": "4", "fusion": "400", "steam": "3", "bio": "5", "electric": "20", "rocket": "16",
+                 "hamster": "3", "thermo": "300", "solar": "40", "wind": "20", "knobbly": "15", "slick": "10",
                  "steelband": "20", "reactive": "40", "maglev":"50", "none": "0", "wood": "40", "aluminium": "200",
                  "thinsteel": "100", "thicksteel": "200", "titanium": "290", "spike": "5", "flame": "20",
                  "charge": "28", "biohazard": "30", "banging":"42","fireproof":"70","insulated":"100","antibiotic":"90"}
@@ -157,6 +158,8 @@ def create_buggy():
     power_weight = int(weight_dict[power_type])*int(power_units)
     aux_power_weight = int(weight_dict[aux_power_type]) * int(aux_power_units)
     attack_weight = int(weight_dict[attack]) * int(qty_attacks)
+    armour_weight = int(weight_dict[armour]) * int(qty_wheels)
+
     if int(qty_tyres) > 4:
         weight_mtply2 = int(qty_tyres)-4
         weight_mtply3 = weight_mtply2*10
@@ -164,18 +167,18 @@ def create_buggy():
     else:
         weight_mtply = 1
 
-    armour_weight = int(weight_dict[armour]) * int(qty_wheels)
+
 
 
 
     if banging == "true":
-        total_cost += int(cost_dict["banging"])
+        total_cost += 42
     if fireproof == "true":
-        total_cost += int(cost_dict["fireproof"])
+        total_cost += 70
     if insulated == "true":
-        total_cost += int(cost_dict["insulated"])
+        total_cost += 100
     if antibiotic == "true":
-        total_cost += int(cost_dict["antibiotic"])
+        total_cost += 90
     if power_type in cost_dict:
         total_cost += int(cost_dict[power_type])*int(power_units)
     if aux_power_type in cost_dict:
